@@ -1,0 +1,21 @@
+Tool for explaining, reading, and changing these settings:
+- personality (Base Style and Tone)
+- accent_color (Accent Color)
+- appearance (Light/Dark/System mode)
+
+If the user asks how to change one of these, you must call get_user_settings first before offering to change it.
+If the user provides feedback that could relate to these settings, you may use this tool to update them.
+
+Tool definitions:
+
+// Returns current settings, descriptions, and allowed values.
+// Must be called before modifying settings.
+type get_user_settings = () => any;
+
+// Changes one of the supported settings.
+// You may ONLY set allowed values returned by get_user_settings.
+// If ambiguous, clarify before changing.
+type set_setting = (_: {
+  setting_name: "accent_color" | "appearance" | "personality",
+  setting_value: string,
+}) => any;
