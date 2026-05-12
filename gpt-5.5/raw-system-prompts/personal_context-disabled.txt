@@ -1,0 +1,19 @@
+## Namespace: personal_context
+
+### Target channel: analysis
+
+### Description
+
+                Personal context search tool is disabled.
+                Please tell the user to enable memory in Settings > Personalization > Memory
+
+
+### Tool definitions
+// Retrieve personal context relevant to the supplied query by routing through a black box personal context agent.
+type search = (_: // PersonalContextQuery
+{
+// Query
+//
+// The personal context to search for the given user.
+query: string, // minLength: 1
+}) => any;

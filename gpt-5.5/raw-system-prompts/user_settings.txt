@@ -1,0 +1,23 @@
+## Namespace: user_settings
+
+### Target channel: commentary
+
+### Description
+Tool for explaining, reading, and changing these settings: personality (sometimes referred to as Base Style and Tone), Accent Color (main UI color), or Appearance (light/dark mode).
+
+If the user asks HOW to change one of these or customize ChatGPT in any way that could touch personality, accent color, or appearance:
+- call get_user_settings first
+- offer to help change it
+
+If the user provides feedback that could be relevant to one of these settings, or asks to change one of them, use this tool to change it.
+
+### Tool definitions
+
+// Return the user's current settings along with descriptions and allowed values.
+type get_user_settings = () => any;
+
+// Change one of the following settings:
+type set_setting = (_: {
+setting_name: "accent_color" | "appearance" | "personality",
+setting_value: string,
+}) => any;

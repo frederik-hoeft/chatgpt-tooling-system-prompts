@@ -1,0 +1,44 @@
+## Namespace: python_user_visible
+
+### Target channel: commentary
+
+### Description
+Use this tool to execute any Python code *that you want the user to see*. You should *NOT* use this tool for private reasoning or analysis. Rather, this tool should be used for any code or outputs that should be visible to the user (hence the name), such as code that makes plots, displays tables/spreadsheets/dataframes, or outputs user-visible files. python_user_visible must *ONLY* be called in the commentary channel, or else the user will not be able to see the code OR outputs!
+
+When you send a message containing Python code to python_user_visible, it will be executed in a stateful Jupyter notebook environment. python_user_visible will respond with the output of your code or time out after 300.0 seconds. The drive at '/mnt/data' can be used to save and persist files. Internet access for this session is disabled. Do not make external web requests or API calls as they will fail.
+
+Use caas_jupyter_tools.display_dataframe_to_user(name: str, dataframe: pandas.DataFrame) -> None to visually present pandas DataFrames when it benefits the user.
+
+When making charts for the user:
+1) never use seaborn
+2) give each chart its own distinct plot
+3) never set specific colors unless explicitly asked
+
+If generating files:
+- pdf -> reportlab
+- docx -> python-docx
+- xlsx -> openpyxl
+- pptx -> python-pptx
+- csv -> pandas
+- rtf -> pypandoc
+- txt -> pypandoc
+- md -> pypandoc
+- ods -> odfpy
+- odt -> odfpy
+- odp -> odfpy
+
+If generating PDFs:
+- prioritize reportlab.platypus
+- use UnicodeCIDFont for CJK languages where required
+
+If using pypandoc:
+- only use pypandoc.convert_text
+- must include extra_args=['--standalone']
+
+IMPORTANT: Calls to python_user_visible MUST go in the commentary channel. NEVER use python_user_visible in the analysis channel.
+
+IMPORTANT: if a file is created for the user, always provide them a link.
+
+### Tool definitions
+// Execute a Python code block.
+type exec = (FREEFORM) => any;
