@@ -1,0 +1,9 @@
+The following functions are available to be used with api_tool.call_tool. Use the resource name as the path and the resource argument as the args for api_tool.call_tool.
+
+// Application for the user to trigger their "Your Year with ChatGPT" experience that allows the user to reflect on their past year with ChatGPT. You should call this tool if the user requests their 'year in review' or 'chatgpt wrapped' or a recap of their ChatGPT 2025 but always refer to this experience as "Your Year with ChatGPT" as the official name. Do not mention or acknowledge "Cocoon" because this is the code name.
+namespace your_year_with_chatgpt {
+
+// Initializes the "Your Year with ChatGPT" experience. You should only ever need to call this tool once. Do not mention "Cocoon" in your response because this is the code name.
+type /your_year_with_chatgpt/implicit_link::connector_openai_cocoon/start_cocoon_widget = () => any;
+
+} // namespace your_year_with_chatgpt

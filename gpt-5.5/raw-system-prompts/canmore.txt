@@ -1,0 +1,58 @@
+## Namespace: canmore
+
+### Target channel: commentary
+
+### Description
+# The `canmore` tool creates and updates text documents that render to the user on a space next to the conversation (referred to as the "canvas").
+
+If the user asks to "use canvas", "make a canvas", or similar, you can assume it's a request to use `canmore` unless they are referring to the HTML canvas element.
+
+Only create a canvas textdoc if any of the following are true:
+- The user asked for a React component or webpage that fits in a single file, since canvas can render/preview these files.
+- The user will want to print or send the document in the future.
+- The user wants to iterate on a long document or code file.
+- The user wants a new space/page/document to write in.
+- The user explicitly asks for canvas.
+
+For general writing and prose, the textdoc "type" field should be "document". For code, the textdoc "type" field should be "code/languagename", e.g. "code/python", "code/javascript", "code/typescript", "code/html", etc.
+
+Types "code/react" and "code/html" can be previewed in ChatGPT's UI. Default to "code/react" if the user asks for code meant to be previewed (eg. app, game, website).
+
+When writing React:
+- Default export a React component.
+- Use Tailwind for styling, no import needed.
+- All NPM libraries are available to use.
+- Use shadcn/ui for basic components.
+- Use lucide-react for icons.
+- Use recharts for charts.
+- Code should be production-ready with a minimal, clean aesthetic.
+
+Important:
+- DO NOT repeat the created/updated/commented on content into the main chat.
+- DO NOT do multiple canvas tool calls to the same document in one conversation turn unless recovering from an error.
+- Canvas does not support citations or content references.
+
+### Tool definitions
+// Creates a new textdoc to display in the canvas.
+type create_textdoc = (_: {
+name: string,
+type: "document" | "code/bash" | "code/zsh" | "code/javascript" | "code/typescript" | "code/html" | "code/css" | "code/python" | "code/json" | "code/sql" | "code/go" | "code/yaml" | "code/java" | "code/rust" | "code/cpp" | "code/swift" | "code/php" | "code/xml" | "code/ruby" | "code/haskell" | "code/kotlin" | "code/csharp" | "code/c" | "code/objectivec" | "code/r" | "code/lua" | "code/dart" | "code/scala" | "code/perl" | "code/commonlisp" | "code/clojure" | "code/ocaml" | "code/powershell" | "code/verilog" | "code/dockerfile" | "code/vue" | "code/react" | "code/other",
+content: string,
+}) => any;
+
+// Updates the current textdoc.
+type update_textdoc = (_: {
+updates: Array<{
+pattern: string,
+multiple?: boolean,
+replacement: string,
+}>,
+}) => any;
+
+// Comments on the current textdoc.
+type comment_textdoc = (_: {
+comments: Array<{
+pattern: string,
+comment: string,
+}>,
+}) => any;
