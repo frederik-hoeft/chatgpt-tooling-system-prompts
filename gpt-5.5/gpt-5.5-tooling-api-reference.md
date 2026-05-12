@@ -1,5 +1,81 @@
 # Tooling Reference
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [`web`](#web)
+  - [Input Format](#input-format)
+  - [Search: `fast` / `slow`](#search-fast--slow)
+  - [`product`](#product)
+  - [`business`](#business)
+  - [`image`](#image)
+  - [`genui_search` / `genui_run`](#genui_search--genui_run)
+  - [`open`](#open)
+- [`python`](#python)
+  - [`python.exec`](#pythonexec)
+- [`python_user_visible`](#python_user_visible)
+  - [`python_user_visible.exec`](#python_user_visibleexec)
+- [`automations`](#automations)
+  - [`automations.create`](#automationscreate)
+  - [`automations.update`](#automationsupdate)
+  - [`automations.list`](#automationslist)
+- [`gmail`](#gmail)
+  - [`gmail.list_labels`](#gmaillist_labels)
+  - [`gmail.search_email_ids`](#gmailsearch_email_ids)
+  - [`gmail.search_emails`](#gmailsearch_emails)
+  - [`gmail.batch_read_email`](#gmailbatch_read_email)
+  - [`gmail.read_attachment`](#gmailread_attachment)
+  - [`gmail.list_drafts`](#gmaillist_drafts)
+  - [`gmail.read_email_thread`](#gmailread_email_thread)
+  - [`gmail.send_email`](#gmailsend_email)
+  - [`gmail.create_draft`](#gmailcreate_draft)
+  - [`gmail.update_draft`](#gmailupdate_draft)
+  - [`gmail.send_draft`](#gmailsend_draft)
+  - [`gmail.forward_emails`](#gmailforward_emails)
+  - [`gmail.archive_emails`](#gmailarchive_emails)
+  - [`gmail.delete_emails`](#gmaildelete_emails)
+  - [`gmail.create_label`](#gmailcreate_label)
+  - [`gmail.apply_labels_to_emails`](#gmailapply_labels_to_emails)
+  - [`gmail.bulk_label_matching_emails`](#gmailbulk_label_matching_emails)
+  - [`gmail.batch_modify_email`](#gmailbatch_modify_email)
+- [`gcal`](#gcal)
+  - [`gcal.search_events`](#gcalsearch_events)
+  - [`gcal.read_event`](#gcalread_event)
+  - [`gcal.get_colors`](#gcalget_colors)
+  - [`gcal.create_event`](#gcalcreate_event)
+  - [`gcal.update_event`](#gcalupdate_event)
+  - [`gcal.respond_event`](#gcalrespond_event)
+  - [`gcal.delete_event`](#gcaldelete_event)
+- [`gcontacts`](#gcontacts)
+  - [`gcontacts.search_contacts`](#gcontactssearch_contacts)
+- [`canmore`](#canmore)
+  - [`canmore.create_textdoc`](#canmorecreate_textdoc)
+  - [`canmore.update_textdoc`](#canmoreupdate_textdoc)
+  - [`canmore.comment_textdoc`](#canmorecomment_textdoc)
+- [`bio`](#bio)
+  - [`bio.update`](#bioupdate)
+- [`personal_context`](#personal_context)
+  - [`personal_context.search`](#personal_contextsearch)
+- [`file_search`](#file_search)
+  - [`file_search.msearch`](#file_searchmsearch)
+  - [`file_search.mclick`](#file_searchmclick)
+- [`api_tool`](#api_tool)
+  - [`api_tool.list_resources`](#api_toollist_resources)
+  - [`api_tool.call_tool`](#api_toolcall_tool)
+- [`container`](#container)
+  - [`container.exec`](#containerexec)
+  - [`container.feed_chars`](#containerfeed_chars)
+  - [`container.open_image`](#containeropen_image)
+  - [`container.download`](#containerdownload)
+- [`image_gen`](#image_gen)
+  - [`image_gen.text2im`](#image_gentext2im)
+- [`user_settings`](#user_settings)
+  - [`user_settings.get_user_settings`](#user_settingsget_user_settings)
+  - [`user_settings.set_setting`](#user_settingsset_setting)
+
+<!-- /code_chunk_output -->
+
 ## `web`
 
 Accesses up-to-date information from the internet.
@@ -8,9 +84,7 @@ Accesses up-to-date information from the internet.
 
 The tool input is a single UTF-8 text blob (not JSON, except for `genui_run`). The blob is a sequence of newline-separated records in pipe-delimited format: `<op>|<field1>|<field2>|...`
 
-### Subcommands
-
-#### Search: `fast` / `slow`
+### Search: `fast` / `slow`
 
 Two search engines are available:
 
@@ -19,7 +93,7 @@ Two search engines are available:
 
 > Note: `system2_search_query` may be marked out of service at times; in that case only `slow` is available.
 
-#### `product`
+### `product`
 
 Searches for physical products.
 
@@ -27,7 +101,7 @@ Searches for physical products.
 
 * `search` and `lookup` are `;`-separated lists; at least one must be non-empty.
 
-#### `business`
+### `business`
 
 Searches for local businesses.
 
@@ -37,13 +111,13 @@ Searches for local businesses.
 * Set `location="user"` when the user is the reference point (e.g., "near me").
 * Do not use `lat_span` / `long_span` unless explicitly requested.
 
-#### `image`
+### `image`
 
 Searches for images on the web.
 
 **Format:** `image|<q>|<recency?>|<domains?>`
 
-#### `genui_search` / `genui_run`
+### `genui_search` / `genui_run`
 
 Interactive widget system.
 
@@ -52,7 +126,7 @@ Interactive widget system.
 
 Widgets available for: sports, weather, currency, unit conversion, jobs, timers.
 
-#### `open`
+### `open`
 
 Opens a specific search result reference.
 
@@ -78,9 +152,7 @@ Opens a specific search result reference.
 
 Executes Python privately (internal reasoning only). Runs in the `analysis` channel and is **not visible** to the user.
 
-### Subcommands
-
-#### `python.exec`
+### `python.exec`
 
 Runs Python code invisibly.
 
@@ -105,9 +177,7 @@ Runs Python code invisibly.
 
 Executes Python code with visible output. Runs in the `commentary` channel.
 
-### Subcommands
-
-#### `python_user_visible.exec`
+### `python_user_visible.exec`
 
 Runs Python code in a shared notebook environment.
 
@@ -149,9 +219,7 @@ Runs Python code in a shared notebook environment.
 
 Schedules tasks or recurring checks.
 
-### Subcommands
-
-#### `automations.create`
+### `automations.create`
 
 Creates a scheduled task.
 
@@ -162,7 +230,7 @@ Creates a scheduled task.
 * `schedule?: string` (iCal VEVENT)
 * `dtstart_offset_json?: string`
 
-#### `automations.update`
+### `automations.update`
 
 Modifies an existing task.
 
@@ -175,7 +243,7 @@ Modifies an existing task.
 * `title?: string`
 * `is_enabled?: boolean`
 
-#### `automations.list`
+### `automations.list`
 
 Lists all active automations.
 
@@ -191,9 +259,7 @@ Lists all active automations.
 
 Gmail access with read and write capabilities.
 
-### Subcommands
-
-#### `gmail.list_labels`
+### `gmail.list_labels`
 
 Lists labels with message counts.
 
@@ -201,7 +267,7 @@ Lists labels with message counts.
 
 * `label_names?: string[]`
 
-#### `gmail.search_email_ids`
+### `gmail.search_email_ids`
 
 Searches for email IDs.
 
@@ -212,7 +278,7 @@ Searches for email IDs.
 * `max_results?: number`
 * `next_page_token?: string`
 
-#### `gmail.search_emails`
+### `gmail.search_emails`
 
 Searches for emails with full content.
 
@@ -223,7 +289,7 @@ Searches for emails with full content.
 * `max_results?: number`
 * `next_page_token?: string`
 
-#### `gmail.batch_read_email`
+### `gmail.batch_read_email`
 
 Reads full email content by IDs.
 
@@ -231,7 +297,7 @@ Reads full email content by IDs.
 
 * `message_ids: string[]`
 
-#### `gmail.read_attachment`
+### `gmail.read_attachment`
 
 Reads an email attachment.
 
@@ -241,7 +307,7 @@ Reads an email attachment.
 * `attachment_id?: string`
 * `filename?: string`
 
-#### `gmail.list_drafts`
+### `gmail.list_drafts`
 
 Lists email drafts.
 
@@ -250,7 +316,7 @@ Lists email drafts.
 * `max_results?: number`
 * `next_page_token?: string`
 
-#### `gmail.read_email_thread`
+### `gmail.read_email_thread`
 
 Reads an email thread.
 
@@ -260,7 +326,7 @@ Reads an email thread.
 * `id_type?: string`
 * `max_messages?: number`
 
-#### `gmail.send_email`
+### `gmail.send_email`
 
 Sends an email immediately.
 
@@ -273,7 +339,7 @@ Sends an email immediately.
 * `bcc?: string`
 * `reply_message_id?: string`
 
-#### `gmail.create_draft`
+### `gmail.create_draft`
 
 Creates a draft for review.
 
@@ -286,7 +352,7 @@ Creates a draft for review.
 * `bcc?: string`
 * `reply_message_id?: string`
 
-#### `gmail.update_draft`
+### `gmail.update_draft`
 
 Updates an existing draft.
 
@@ -299,7 +365,7 @@ Updates an existing draft.
 * `cc?: string`
 * `bcc?: string`
 
-#### `gmail.send_draft`
+### `gmail.send_draft`
 
 Sends a saved draft.
 
@@ -307,7 +373,7 @@ Sends a saved draft.
 
 * `draft_id: string`
 
-#### `gmail.forward_emails`
+### `gmail.forward_emails`
 
 Forwards existing emails to another recipient.
 
@@ -319,7 +385,7 @@ Forwards existing emails to another recipient.
 * `bcc?: string`
 * `note?: string`
 
-#### `gmail.archive_emails`
+### `gmail.archive_emails`
 
 Archives emails (removes from inbox, keeps in Gmail).
 
@@ -327,7 +393,7 @@ Archives emails (removes from inbox, keeps in Gmail).
 
 * `message_ids: string[]`
 
-#### `gmail.delete_emails`
+### `gmail.delete_emails`
 
 Moves emails to Trash.
 
@@ -335,7 +401,7 @@ Moves emails to Trash.
 
 * `message_ids: string[]`
 
-#### `gmail.create_label`
+### `gmail.create_label`
 
 Creates a new label.
 
@@ -345,7 +411,7 @@ Creates a new label.
 * `message_list_visibility?: string`
 * `label_list_visibility?: string`
 
-#### `gmail.apply_labels_to_emails`
+### `gmail.apply_labels_to_emails`
 
 Adds or removes labels by name.
 
@@ -356,7 +422,7 @@ Adds or removes labels by name.
 * `remove_label_names?: string[]`
 * `create_missing_labels?: boolean`
 
-#### `gmail.bulk_label_matching_emails`
+### `gmail.bulk_label_matching_emails`
 
 Labels all emails matching a search query in one step.
 
@@ -367,7 +433,7 @@ Labels all emails matching a search query in one step.
 * `create_label_if_missing?: boolean`
 * `archive?: boolean`
 
-#### `gmail.batch_modify_email`
+### `gmail.batch_modify_email`
 
 Modifies labels by raw Gmail label IDs.
 
@@ -383,9 +449,7 @@ Modifies labels by raw Gmail label IDs.
 
 Google Calendar access with read and write capabilities.
 
-### Subcommands
-
-#### `gcal.search_events`
+### `gcal.search_events`
 
 Searches calendar events.
 
@@ -399,7 +463,7 @@ Searches calendar events.
 * `calendar_id?: string`
 * `next_page_token?: string`
 
-#### `gcal.read_event`
+### `gcal.read_event`
 
 Reads a specific event.
 
@@ -408,11 +472,11 @@ Reads a specific event.
 * `event_id: string`
 * `calendar_id?: string`
 
-#### `gcal.get_colors`
+### `gcal.get_colors`
 
 Returns calendar and event color palettes.
 
-#### `gcal.create_event`
+### `gcal.create_event`
 
 Creates a new calendar event.
 
@@ -437,7 +501,7 @@ Creates a new calendar event.
 * `self_attendance?: string`
 * `add_google_meet?: boolean`
 
-#### `gcal.update_event`
+### `gcal.update_event`
 
 Updates an existing event.
 
@@ -464,7 +528,7 @@ Updates an existing event.
 * `chat_status?: string`
 * `add_google_meet?: boolean`
 
-#### `gcal.respond_event`
+### `gcal.respond_event`
 
 Responds to a calendar invitation.
 
@@ -475,7 +539,7 @@ Responds to a calendar invitation.
 * `reason?: string`
 * `notify?: boolean`
 
-#### `gcal.delete_event`
+### `gcal.delete_event`
 
 Deletes a calendar event.
 
@@ -489,9 +553,7 @@ Deletes a calendar event.
 
 Read-only Google Contacts access.
 
-### Subcommands
-
-#### `gcontacts.search_contacts`
+### `gcontacts.search_contacts`
 
 Searches contacts.
 
@@ -506,9 +568,7 @@ Searches contacts.
 
 Creates and edits documents in a side canvas.
 
-### Subcommands
-
-#### `canmore.create_textdoc`
+### `canmore.create_textdoc`
 
 Creates a new canvas document.
 
@@ -522,7 +582,7 @@ Supported code types: `bash`, `zsh`, `javascript`, `typescript`, `html`, `css`, 
 
 Types `code/react` and `code/html` can be previewed. Default to `code/react` for apps/games/websites.
 
-#### `canmore.update_textdoc`
+### `canmore.update_textdoc`
 
 Updates content via regex replacements.
 
@@ -530,7 +590,7 @@ Updates content via regex replacements.
 
 * `updates: Array<{ pattern: string, multiple?: boolean, replacement: string }>`
 
-#### `canmore.comment_textdoc`
+### `canmore.comment_textdoc`
 
 Adds comments to a document.
 
@@ -551,9 +611,7 @@ Adds comments to a document.
 
 Persistent memory storage.
 
-### Subcommands
-
-#### `bio.update`
+### `bio.update`
 
 Stores or removes long-term information.
 
@@ -571,9 +629,7 @@ Stores or removes long-term information.
 
 Retrieves user-specific personal context from linked accounts, prior interactions, and other personal context streams. Runs in the `analysis` channel.
 
-### Subcommands
-
-#### `personal_context.search`
+### `personal_context.search`
 
 Searches across personal context sources.
 
@@ -595,9 +651,7 @@ Searches across personal context sources.
 
 Searches and views files uploaded in the current conversation. Runs in the `analysis` channel.
 
-### Subcommands
-
-#### `file_search.msearch`
+### `file_search.msearch`
 
 Searches across uploaded files.
 
@@ -605,7 +659,7 @@ Searches across uploaded files.
 
 * `queries?: string[]`
 
-#### `file_search.mclick`
+### `file_search.mclick`
 
 Expands uploaded-file search results previously returned by `msearch`.
 
@@ -624,9 +678,7 @@ Expands uploaded-file search results previously returned by `msearch`.
 
 Discovers and invokes structured application resources.
 
-### Subcommands
-
-#### `api_tool.list_resources`
+### `api_tool.list_resources`
 
 Lists available resources/tools.
 
@@ -637,7 +689,7 @@ Lists available resources/tools.
 * `only_tools?: boolean`
 * `refetch_tools?: boolean`
 
-#### `api_tool.call_tool`
+### `api_tool.call_tool`
 
 Invokes a discovered tool.
 
@@ -657,9 +709,7 @@ Invokes a discovered tool.
 
 Interacts with a container environment.
 
-### Subcommands
-
-#### `container.exec`
+### `container.exec`
 
 Runs a command.
 
@@ -672,7 +722,7 @@ Runs a command.
 * `env?: object`
 * `user?: string`
 
-#### `container.feed_chars`
+### `container.feed_chars`
 
 Sends input to an interactive session.
 
@@ -682,7 +732,7 @@ Sends input to an interactive session.
 * `chars: string`
 * `yield_time_ms?: number` (default: 100)
 
-#### `container.open_image`
+### `container.open_image`
 
 Opens an image file.
 
@@ -693,7 +743,7 @@ Opens an image file.
 
 Supported formats: `jpg`, `jpeg`, `png`, `webp`
 
-#### `container.download`
+### `container.download`
 
 Downloads a file into the container.
 
@@ -708,9 +758,7 @@ Downloads a file into the container.
 
 Generates or edits images.
 
-### Subcommands
-
-#### `image_gen.text2im`
+### `image_gen.text2im`
 
 **Parameters:**
 
@@ -733,13 +781,11 @@ Generates or edits images.
 
 Reads and updates UI settings.
 
-### Subcommands
-
-#### `user_settings.get_user_settings`
+### `user_settings.get_user_settings`
 
 Returns current settings and allowed values.
 
-#### `user_settings.set_setting`
+### `user_settings.set_setting`
 
 Updates a setting.
 

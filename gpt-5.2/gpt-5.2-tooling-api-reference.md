@@ -1,12 +1,54 @@
 # Tooling Reference
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [`web`](#web)
+  - [`web.run`](#webrun)
+- [`python`](#python)
+  - [`python.exec`](#pythonexec)
+- [`python_user_visible`](#python_user_visible)
+  - [`python_user_visible.exec`](#python_user_visibleexec)
+- [`automations`](#automations)
+  - [`automations.create`](#automationscreate)
+  - [`automations.update`](#automationsupdate)
+  - [`automations.list`](#automationslist)
+- [`gmail`](#gmail)
+  - [`gmail.search_email_ids`](#gmailsearch_email_ids)
+  - [`gmail.batch_read_email`](#gmailbatch_read_email)
+- [`gcal`](#gcal)
+  - [`gcal.search_events`](#gcalsearch_events)
+  - [`gcal.read_event`](#gcalread_event)
+- [`gcontacts`](#gcontacts)
+  - [`gcontacts.search_contacts`](#gcontactssearch_contacts)
+- [`canmore`](#canmore)
+  - [`canmore.create_textdoc`](#canmorecreate_textdoc)
+  - [`canmore.update_textdoc`](#canmoreupdate_textdoc)
+  - [`canmore.comment_textdoc`](#canmorecomment_textdoc)
+- [`bio`](#bio)
+  - [`bio.update`](#bioupdate)
+- [`api_tool`](#api_tool)
+  - [`api_tool.list_resources`](#api_toollist_resources)
+  - [`api_tool.call_tool`](#api_toolcall_tool)
+- [`container`](#container)
+  - [`container.exec`](#containerexec)
+  - [`container.feed_chars`](#containerfeed_chars)
+  - [`container.open_image`](#containeropen_image)
+  - [`container.download`](#containerdownload)
+- [`image_gen`](#image_gen)
+  - [`image_gen.text2im`](#image_gentext2im)
+- [`user_settings`](#user_settings)
+  - [`user_settings.get_user_settings`](#user_settingsget_user_settings)
+  - [`user_settings.set_setting`](#user_settingsset_setting)
+
+<!-- /code_chunk_output -->
+
 ## `web`
 
 Accesses up-to-date information from the internet.
 
-### Subcommands
-
-#### `web.run`
+### `web.run`
 
 Performs web operations.
 
@@ -31,9 +73,7 @@ Performs web operations.
 
 Executes Python privately (internal reasoning only).
 
-### Subcommands
-
-#### `python.exec`
+### `python.exec`
 
 Runs Python code invisibly.
 
@@ -54,9 +94,7 @@ Runs Python code invisibly.
 
 Executes Python code with visible output.
 
-### Subcommands
-
-#### `python_user_visible.exec`
+### `python_user_visible.exec`
 
 Runs Python code in a shared notebook environment.
 
@@ -95,9 +133,7 @@ Runs Python code in a shared notebook environment.
 
 Schedules tasks or recurring checks.
 
-### Subcommands
-
-#### `automations.create`
+### `automations.create`
 
 Creates a scheduled task.
 
@@ -108,7 +144,7 @@ Creates a scheduled task.
 * `schedule?: string` (iCal VEVENT)
 * `dtstart_offset_json?: string`
 
-#### `automations.update`
+### `automations.update`
 
 Modifies an existing task.
 
@@ -121,7 +157,7 @@ Modifies an existing task.
 * `title?: string`
 * `is_enabled?: boolean`
 
-#### `automations.list`
+### `automations.list`
 
 Lists all active automations.
 
@@ -137,9 +173,7 @@ Lists all active automations.
 
 Read-only Gmail access.
 
-### Subcommands
-
-#### `gmail.search_email_ids`
+### `gmail.search_email_ids`
 
 Searches for email IDs.
 
@@ -150,7 +184,7 @@ Searches for email IDs.
 * `max_results?: number`
 * `next_page_token?: string`
 
-#### `gmail.batch_read_email`
+### `gmail.batch_read_email`
 
 Reads full email content.
 
@@ -168,9 +202,7 @@ Reads full email content.
 
 Read-only Google Calendar access.
 
-### Subcommands
-
-#### `gcal.search_events`
+### `gcal.search_events`
 
 Searches calendar events.
 
@@ -184,7 +216,7 @@ Searches calendar events.
 * `calendar_id?: string`
 * `next_page_token?: string`
 
-#### `gcal.read_event`
+### `gcal.read_event`
 
 Reads a specific event.
 
@@ -203,9 +235,7 @@ Reads a specific event.
 
 Read-only Google Contacts access.
 
-### Subcommands
-
-#### `gcontacts.search_contacts`
+### `gcontacts.search_contacts`
 
 Searches contacts.
 
@@ -220,9 +250,7 @@ Searches contacts.
 
 Creates and edits documents in a side canvas.
 
-### Subcommands
-
-#### `canmore.create_textdoc`
+### `canmore.create_textdoc`
 
 Creates a new canvas document.
 
@@ -232,7 +260,7 @@ Creates a new canvas document.
 * `type: document | code/*`
 * `content: string`
 
-#### `canmore.update_textdoc`
+### `canmore.update_textdoc`
 
 Updates content via regex replacements.
 
@@ -240,7 +268,7 @@ Updates content via regex replacements.
 
 * `updates: Array<{ pattern: string, multiple?: boolean, replacement: string }>`
 
-#### `canmore.comment_textdoc`
+### `canmore.comment_textdoc`
 
 Adds comments to a document.
 
@@ -261,9 +289,7 @@ Adds comments to a document.
 
 Persistent memory storage.
 
-### Subcommands
-
-#### `bio.update`
+### `bio.update`
 
 Stores or removes long-term information.
 
@@ -281,9 +307,7 @@ Stores or removes long-term information.
 
 Discovers and invokes structured application resources.
 
-### Subcommands
-
-#### `api_tool.list_resources`
+### `api_tool.list_resources`
 
 Lists available resources/tools.
 
@@ -294,7 +318,7 @@ Lists available resources/tools.
 * `only_tools?: boolean`
 * `refetch_tools?: boolean`
 
-#### `api_tool.call_tool`
+### `api_tool.call_tool`
 
 Invokes a discovered tool.
 
@@ -314,9 +338,7 @@ Invokes a discovered tool.
 
 Interacts with a container environment.
 
-### Subcommands
-
-#### `container.exec`
+### `container.exec`
 
 Runs a command.
 
@@ -329,7 +351,7 @@ Runs a command.
 * `env?: object`
 * `user?: string`
 
-#### `container.feed_chars`
+### `container.feed_chars`
 
 Sends input to an interactive session.
 
@@ -339,7 +361,7 @@ Sends input to an interactive session.
 * `chars: string`
 * `yield_time_ms?: number`
 
-#### `container.open_image`
+### `container.open_image`
 
 Opens an image file.
 
@@ -350,7 +372,7 @@ Opens an image file.
 
 Supported formats: `jpg`, `jpeg`, `png`, `webp`
 
-#### `container.download`
+### `container.download`
 
 Downloads a file into the container.
 
@@ -365,9 +387,7 @@ Downloads a file into the container.
 
 Generates or edits images.
 
-### Subcommands
-
-#### `image_gen.text2im`
+### `image_gen.text2im`
 
 **Parameters:**
 
@@ -390,13 +410,11 @@ Generates or edits images.
 
 Reads and updates UI settings.
 
-### Subcommands
-
-#### `user_settings.get_user_settings`
+### `user_settings.get_user_settings`
 
 Returns current settings and allowed values.
 
-#### `user_settings.set_setting`
+### `user_settings.set_setting`
 
 Updates a setting.
 
