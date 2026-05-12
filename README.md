@@ -4,8 +4,15 @@ This repository documents the exact tooling available to ChatGPT agents by captu
 
 ## Contents
 
-- Consult [chatgpt-tooling-api-reference.md](chatgpt-tooling-api-reference.md) for an overview of supported capabilities, subcommands, parameters, and intended use cases.
-- Read the corresponding file in [raw-system-prompts](raw-system-prompts) for exact agent instructions, constraints, and examples on how it should use each tool.
+### GPT-5.5
+
+- Consult [gpt-5.5-tooling-api-reference.md](gpt-5.5/gpt-5.5-tooling-api-reference.md) for an overview of supported capabilities, subcommands, parameters, and intended use cases.
+- Read the corresponding file in [gpt-5.5/raw-system-prompts](gpt-5.5/raw-system-prompts) for exact agent instructions, constraints, and examples on how it should use each tool.
+
+### GPT-5.2
+
+- Consult [gpt-5.2-tooling-api-reference.md](gpt-5.2/gpt-5.2-tooling-api-reference.md) for an overview of supported capabilities, subcommands, parameters, and intended use cases.
+- Read the corresponding file in [gpt-5.2/raw-system-prompts](gpt-5.2/raw-system-prompts) for exact agent instructions, constraints, and examples on how it should use each tool.
 
 ## Use Cases
 
